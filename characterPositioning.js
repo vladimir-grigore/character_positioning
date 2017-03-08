@@ -2,18 +2,15 @@ var args = process.argv.slice(2).join('').toLowerCase();
 
 function countLetters(stringParameter) {
   var objectReturned = {};
-    console.log(stringParameter)
 
   for(letter of stringParameter) {
-
-    if (!objectReturned.letter) {
       if (!objectReturned[letter]){
-        objectReturned[letter] = 1;
+        objectReturned[letter] = [stringParameter.indexOf(letter)];
       } else {
-        objectReturned[letter] += 1;
+        var lastIndex = objectReturned[letter][objectReturned[letter].length-1];
+        objectReturned[letter].push(stringParameter.indexOf(letter, lastIndex + 1));
       }
     }
-  }
   console.log(objectReturned);
 }
 
